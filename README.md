@@ -1,11 +1,10 @@
-# Stir Your Imagination Events gallery
+# Stir Your Imagination Events
 
 The Art of the Unexpected.
 
-The working demonstration is in `dist/`. Open `dist/adding-photos.html` for simple instructions.
+Three permanent transformations are configured in dist/gallery-data.js:
+- Disco Fever: hutskos.jpg → thumbnail_20260813_214909814.jpg
+- Be the Icon: 20261014_215334840_original.jpg → 20261014_215334840_generated.jpg
+- On Top of the World: hutskos.jpg → thumbnail_20260811_141656467.jpg
 
-Disco Fever original and generated JPEGs are saved unchanged in the repository root and deployed copies in dist/photos/. SHA-256 equality is verified before publication. `dist/photos/` is the permanent asset folder. `dist/gallery-data.js` configures 12 pairs; append entries to support any additional pairs. Only pairs with both images load into the gallery. Until photos exist, three clearly labeled abstract placeholders display.
-
-The first transformation uses a full-image reveal. Remaining transformations use sliders. All images use proportional contain fitting and a frame based on the taller image shape. No image processing occurs.
-
-Upload originals into dist/photos and commit them. GitHub commits persist files, but the separate private Sites demo must also be synchronized and redeployed to display changes. The live Squarespace website is not connected or modified.
+Source JPEGs remain unchanged in the repository root. Byte-identical deployed copies live in dist/photos. All experiences use independent reveal/return buttons, full-image contain fitting, and a frame sized for the taller image ratio. Append entries to gallery-data.js to expand beyond 12 transformations. No browser uploads or browser storage are used. Publish the entire dist directory to keep photographs available after refresh. The live Squarespace website is not connected or modified.
