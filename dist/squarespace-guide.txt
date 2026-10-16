@@ -2,7 +2,7 @@ STIR YOUR IMAGINATION EVENTS — GALLERY DEMO
 
 1. Open the demo and select “Try your photographs”. Add your original BEFORE and finished AFTER images to each of the three slots. JPEG, PNG and WebP files up to 15 MB each are accepted. Files stay in your browser tab. Refreshing clears selections.
 2. Both photographs display completely with their original proportions, without cropping or stretching. Each comparison automatically uses the taller image aspect ratio; neutral spacing accommodates the other image. Layout adapts on phones and computers. Original image files are embedded unchanged; no face generation or image processing is performed.
-3. Select “Download your gallery”. This produces a standalone HTML file with your selected images embedded. Save this file to retain your selections. Open it in a browser to verify all comparisons before publishing.
+3. Select “Download your gallery”. This produces a standalone HTML file with your selected images embedded. Save this file to retain your selections. Open it in a browser to verify the first reveal and both sliding comparisons before publishing.
 4. To integrate later, host that exported HTML at a public HTTPS URL you control. A private demo URL requires sign-in and is unsuitable for public embedding.
 5. On a DUPLICATE or unpublished Squarespace page, add a Code block with the iframe below, replacing the example URL. Availability of iframe/custom code depends on your Squarespace plan.
 
@@ -10,6 +10,6 @@ STIR YOUR IMAGINATION EVENTS — GALLERY DEMO
 
 Adjust height after checking desktop and phone layouts. The gallery itself is responsive; the iframe height needs enough room for the phone layout. This file requires no external scripts, fonts or image services. Large embedded images increase download size; use sensibly sized web images for the final gallery.
 
-To add more transformations, duplicate an article[data-slot] and assign a new slot number in the exported HTML. Update its title, images and range input accessible label. Each comparison uses its own native range input.
+To add more transformations, duplicate an article[data-slot] and assign a new slot number in the exported HTML. Update its title, images and range input accessible label. The first gallery uses Reveal the Transformation / See the Original buttons with a full-image crossfade. The other two comparisons retain native range sliders.
 
 No changes have been made to your live Squarespace website.
