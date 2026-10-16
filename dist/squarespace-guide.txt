@@ -1,7 +1,7 @@
 STIR YOUR IMAGINATION EVENTS — GALLERY DEMO
 
 1. Open the demo and select “Try your photographs”. Add your original BEFORE and finished AFTER images to each of the three slots. JPEG, PNG and WebP files up to 15 MB each are accepted. Files stay in your browser tab. Refreshing clears selections.
-2. Use matching image dimensions and subject placement. Both images use a centered cover crop; on smaller screens their edges may be cropped. Images are displayed as supplied; no face generation or image processing is performed.
+2. Both photographs display completely with their original proportions, without cropping or stretching. Each comparison automatically uses the taller image aspect ratio; neutral spacing accommodates the other image. Layout adapts on phones and computers. Original image files are embedded unchanged; no face generation or image processing is performed.
 3. Select “Download your gallery”. This produces a standalone HTML file with your selected images embedded. Save this file to retain your selections. Open it in a browser to verify all comparisons before publishing.
 4. To integrate later, host that exported HTML at a public HTTPS URL you control. A private demo URL requires sign-in and is unsuitable for public embedding.
 5. On a DUPLICATE or unpublished Squarespace page, add a Code block with the iframe below, replacing the example URL. Availability of iframe/custom code depends on your Squarespace plan.
