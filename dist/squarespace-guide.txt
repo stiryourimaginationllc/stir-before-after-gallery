@@ -1,15 +1,5 @@
-STIR YOUR IMAGINATION EVENTS — GALLERY DEMO
+STIR YOUR IMAGINATION EVENTS
 
-1. Open the demo and select “Try your photographs”. Add your original BEFORE and finished AFTER images to each of the three slots. JPEG, PNG and WebP files up to 15 MB each are accepted. Files stay in your browser tab. Refreshing clears selections.
-2. Both photographs display completely with their original proportions, without cropping or stretching. Each comparison automatically uses the taller image aspect ratio; neutral spacing accommodates the other image. Layout adapts on phones and computers. Original image files are embedded unchanged; no face generation or image processing is performed.
-3. Select “Download your gallery”. This produces a standalone HTML file with your selected images embedded. Save this file to retain your selections. Open it in a browser to verify the first reveal and both sliding comparisons before publishing.
-4. To integrate later, host that exported HTML at a public HTTPS URL you control. A private demo URL requires sign-in and is unsuitable for public embedding.
-5. On a DUPLICATE or unpublished Squarespace page, add a Code block with the iframe below, replacing the example URL. Availability of iframe/custom code depends on your Squarespace plan.
+Permanent photo setup: open adding-photos.html. Photographs are loaded from project files listed in gallery-data.js, not temporary browser selections.
 
-<iframe src="https://YOUR-PUBLIC-HOST/gallery.html" title="Stir Your Imagination Events before and after photo gallery" style="display:block;width:100%;height:2400px;border:0" loading="lazy"></iframe>
-
-Adjust height after checking desktop and phone layouts. The gallery itself is responsive; the iframe height needs enough room for the phone layout. This file requires no external scripts, fonts or image services. Large embedded images increase download size; use sensibly sized web images for the final gallery.
-
-To add more transformations, duplicate an article[data-slot] and assign a new slot number in the exported HTML. Update its title, images and range input accessible label. The first gallery uses Reveal the Transformation / See the Original buttons with a full-image crossfade. The other two comparisons retain native range sliders.
-
-No changes have been made to your live Squarespace website.
+For later Squarespace integration, host the complete dist folder at a public HTTPS address. Private demo links require sign-in. On an unpublished Squarespace page, use an iframe Code block pointing to that public gallery URL. Adjust iframe height to fit all transformations on desktop and phone. No changes have been made to your live Squarespace website.

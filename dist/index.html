@@ -14,16 +14,14 @@
 @media(max-width:700px){.reveal-controls{gap:12px}.reveal-button{font-size:12px;padding:16px}.reveal-state{font-size:9px;letter-spacing:1px}}
 @media(prefers-reduced-motion:reduce){#featured .reveal-frame .layer,.reveal-button{transition:none}}
 </style></head><body>
-<header><a class="brand" href="#" aria-label="Stir Your Imagination Events home">Stir Your Imagination<span>Events</span></a><nav><a href="#gallery">The transformations</a><button class="outline" id="customize" aria-expanded="false" aria-controls="studio">Try your photographs ↗</button></nav></header>
+<header><a class="brand" href="#" aria-label="Stir Your Imagination Events home">Stir Your Imagination<span>Events</span></a><nav><a href="#gallery">The transformations</a><a class="outline" href="adding-photos.html">Add permanent photographs ↗</a></nav></header>
 <main><section class="hero"><div><p class="eyebrow">Immersive photo booth experiences</p><h1>The Art of<br>the <em>Unexpected.</em></h1></div><div class="intro"><p>An ordinary portrait. An extraordinary possibility. Discover how a single photograph becomes an entirely new world.</p><a class="textlink" href="#gallery">Explore the transformations &nbsp; ↓</a></div></section>
-<section id="studio" class="studio" hidden><h2>Make the reveal yours.</h2><p>Choose your original and finished photographs for each slot. Images stay in this browser tab and are never uploaded. Both photographs are shown in full at their original proportions. Each comparison automatically adapts to the taller image shape, with neutral spacing around the other image when needed. Original files are never modified.</p><div class="upload-grid" id="uploads"></div><div class="actions"><button class="solid" id="export">Download your gallery</button><button class="outline" id="reset">Reset placeholders</button><a class="outline" href="squarespace-guide.txt" download>Squarespace setup guide ↗</a></div><p class="status" id="status" role="status">Selections are temporary until you download your gallery.</p></section>
-<section id="gallery" aria-label="Before and after transformation gallery"><div class="collectionbar"><span>A change in perspective</span><span>Reveal the first. Slide to explore the others.</span></div><div id="featured"></div><div class="grid" id="more"></div><p class="note">Demonstration gallery · Abstract scene placeholders only. Your original before-and-after photographs will take their place. No people or faces are generated.</p></section>
+<section id="gallery" aria-label="Before and after transformation gallery"><div class="collectionbar"><span>A change in perspective</span><span>Reveal the first. Slide to explore the others.</span></div><p id="gallery-status" class="note" role="status">Loading the gallery…</p><div id="featured"></div><div class="grid" id="more"></div><p class="note">Demonstration gallery · Abstract scene placeholders only. Your original before-and-after photographs will take their place. No people or faces are generated.</p></section>
 <section class="ending"><div><p class="eyebrow">Beyond the ordinary</p><h2>Your moment. Reimagined.</h2></div><p>Stir Your Imagination Events creates immersive photo booth experiences that transform ordinary portraits into extraordinary scenes.</p></section></main><footer><span>STIR YOUR IMAGINATION EVENTS</span><span>The Art of the Unexpected.</span></footer>
+<script src="gallery-data.js"></script>
 <script>
 const titles=['A world of possibility','A different atmosphere','Beyond the frame'];
 function art(i,after){const colors=after?[['#172f34','#bca97c','#73908a'],['#30324b','#c7a583','#80768e'],['#4a4936','#d3b98b','#8b9674']][i]:['#aaa69c','#e5e0d5','#c3bfb4'];return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g${i}${after}" x2="0" y2="1"><stop stop-color="${colors[0]}"/><stop offset="1" stop-color="${colors[2]}"/></linearGradient></defs><rect width="1200" height="700" fill="url(#g${i}${after})"/><circle cx="${820-i*140}" cy="195" r="100" fill="${colors[1]}" opacity=".8"/><path d="M0 510 Q260 280 500 490 T1200 370 V700 H0" fill="${colors[0]}" opacity=".55"/><path d="M0 620 Q400 390 720 570 T1200 490 V700 H0" fill="${colors[2]}"/><path d="M440 700 V310 A160 160 0 0 1 760 310 V700" fill="none" stroke="${colors[1]}" stroke-width="42"/><path d="M396 700 H804 L740 510 H460Z" fill="${colors[1]}" opacity=".28"/><path d="M600 510 V700 M460 570 H740 M432 635 H770" stroke="${colors[1]}" opacity=".3"/></svg>`}
-function build(){titles.forEach((title,i)=>{const card=document.createElement('article');card.dataset.slot=i;card.innerHTML=`<div class="compare"><div class="layer after">${art(i,true)}</div><div class="layer before">${art(i,false)}</div><span class="badge left">BEFORE</span><span class="badge right">AFTER</span><div class="divider"><span class="knob">‹ ›</span></div><span class="sample">Illustrative placeholder · ${String(i+1).padStart(2,'0')}</span><input type="range" min="0" max="100" value="50" aria-label="Reveal transformation ${i+1}: ${title}" aria-valuetext="50% before, 50% after"></div><div class="caption"><h2><span class="num">0${i+1}</span>${title}</h2><small>BEFORE / AFTER</small></div>`;document.querySelector(i?'#more':'#featured').append(card)})}
-if(!document.querySelector('[data-slot]'))build();
 function setReveal(after){
  const card=document.querySelector('#featured [data-slot="0"]');
  const frame=card.querySelector('.compare');
@@ -48,7 +46,6 @@ function prepareReveal(){
  setReveal(false);
  card.querySelector('.reveal-button').addEventListener('click',()=>setReveal(!frame.classList.contains('is-after')));
 }
-prepareReveal();
 function fitComparison(card){
  const frame=card.querySelector('.compare');
  const images=[...card.querySelectorAll('.layer img')].filter(img=>img.naturalWidth>0&&img.naturalHeight>0);
@@ -57,14 +54,33 @@ function fitComparison(card){
   frame.style.aspectRatio=String(ratio);
  }else frame.style.removeProperty('aspect-ratio');
 }
-document.querySelectorAll('[data-slot]').forEach(card=>{
- card.querySelectorAll('.layer img').forEach(img=>img.addEventListener('load',()=>fitComparison(card)));
- fitComparison(card);
-});
-document.querySelectorAll('.compare input').forEach(input=>input.addEventListener('input',()=>{input.closest('.compare').style.setProperty('--split',input.value+'%');input.setAttribute('aria-valuetext',`${input.value}% before, ${100-input.value}% after`)}));
-const studio=document.querySelector('#studio'),toggle=document.querySelector('#customize'),status=document.querySelector('#status');
-toggle?.addEventListener('click',()=>{studio.hidden=!studio.hidden;toggle.setAttribute('aria-expanded',String(!studio.hidden));if(!studio.hidden)studio.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});
-if(document.querySelector('#uploads')){document.querySelector('#uploads').innerHTML=titles.map((t,i)=>`<div><strong>0${i+1} · ${t}</strong><label>Before photograph<input type="file" accept="image/jpeg,image/png,image/webp" data-i="${i}" data-side="before"></label><label>After photograph<input type="file" accept="image/jpeg,image/png,image/webp" data-i="${i}" data-side="after"></label></div>`).join('');document.querySelectorAll('input[type=file]').forEach(input=>input.addEventListener('change',async()=>{const file=input.files[0];if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15*1024*1024){status.textContent='Please choose a JPEG, PNG or WebP image smaller than 15 MB.';input.value='';return}const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const card=document.querySelector(`[data-slot="${input.dataset.i}"]`);img.alt=`${input.dataset.side==='before'?'Original':'Finished'} photograph for transformation ${Number(input.dataset.i)+1}`;card.querySelector('.'+input.dataset.side).replaceChildren(img);fitComparison(card);const complete=card.querySelectorAll('.layer img').length===2;card.querySelector('.sample').hidden=complete;status.textContent='Photograph added. Download your gallery to keep your selections.'};img.onerror=()=>{status.textContent='This image could not be opened. Please try another file.'};img.src=reader.result};reader.onerror=()=>{status.textContent='Unable to read this image. Please try again.'};reader.readAsDataURL(file)}))}
-document.querySelector('#reset')?.addEventListener('click',()=>{document.querySelectorAll('[data-slot]').forEach((card,i)=>{['before','after'].forEach(side=>card.querySelector('.'+side).innerHTML=art(i,side==='after'));fitComparison(card);card.querySelector('.sample').hidden=false;const slider=card.querySelector('input[type=range]');if(slider){slider.value=50;slider.dispatchEvent(new Event('input'))}else setReveal(false)});document.querySelectorAll('input[type=file]').forEach(x=>x.value='');status.textContent='Placeholders restored.'});
-document.querySelector('#export')?.addEventListener('click',()=>{const clone=document.documentElement.cloneNode(true);clone.querySelector('#studio').remove();clone.querySelector('#customize').remove();clone.querySelectorAll('.compare input').forEach(x=>{x.setAttribute('value',x.value)});if([...clone.querySelectorAll('.layer')].every(x=>x.querySelector('img')))clone.querySelector('.note').remove();const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='stir-your-imagination-gallery.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='Gallery downloaded with your selected photographs included.'});
+
+function loadPhoto(src,alt){return new Promise(resolve=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.alt=alt;img.src=src;});}
+function addCard(pair,i){
+ const card=document.createElement('article');card.dataset.slot=i;
+ const title=pair.title||`Transformation ${i+1}`;
+ card.innerHTML=`<div class="compare"><div class="layer after"></div><div class="layer before"></div><span class="badge left">BEFORE</span><span class="badge right">AFTER</span><div class="divider"><span class="knob">‹ ›</span></div><span class="sample">Illustrative placeholder</span><input type="range" min="0" max="100" value="50" aria-valuetext="50% before, 50% after"></div><div class="caption"><h2><span class="num"></span><span class="card-title"></span></h2><small>BEFORE / AFTER</small></div>`;
+ card.querySelector('.card-title').textContent=title;
+ card.querySelector('.num').textContent=String(i+1).padStart(2,'0');
+ const slider=card.querySelector('input');slider.setAttribute('aria-label',`Reveal transformation ${i+1}: ${title}`);
+ if(pair.beforeImage&&pair.afterImage){card.querySelector('.before').append(pair.beforeImage);card.querySelector('.after').append(pair.afterImage);card.querySelector('.sample').remove();}
+ else{card.querySelector('.before').innerHTML=art(i%3,false);card.querySelector('.after').innerHTML=art(i%3,true);}
+ document.querySelector(i?'#more':'#featured').append(card);fitComparison(card);
+ slider.addEventListener('input',()=>{slider.closest('.compare').style.setProperty('--split',slider.value+'%');slider.setAttribute('aria-valuetext',`${slider.value}% before, ${100-slider.value}% after`)});
+}
+async function startGallery(){
+ const entries=Array.isArray(window.TRANSFORMATIONS)?window.TRANSFORMATIONS:[];
+ const results=await Promise.all(entries.map(async(entry,i)=>{
+  if(!entry.before||!entry.after)return null;
+  const [beforeImage,afterImage]=await Promise.all([loadPhoto(entry.before,`Original photograph: ${entry.title||i+1}`),loadPhoto(entry.after,`Finished photograph: ${entry.title||i+1}`)]);
+  return beforeImage&&afterImage?{...entry,beforeImage,afterImage}:null;
+ }));
+ const pairs=results.filter(Boolean);
+ if(pairs.length){pairs.forEach(addCard);document.querySelector('.note:not(#gallery-status)')?.remove();}
+ else titles.forEach((title,i)=>addCard({title},i));
+ prepareReveal();
+ const status=document.querySelector('#gallery-status');
+ status.textContent=pairs.length?`${pairs.length} transformation${pairs.length===1?'':'s'} · Original photographs stored with the gallery.`:'Your permanent photo slots are ready. No original photographs have been added yet; the scenes below are illustrative placeholders.';
+}
+startGallery();
 </script></body></html>
