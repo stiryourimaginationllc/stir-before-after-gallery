@@ -76,7 +76,7 @@ async function startGallery(){
   return beforeImage&&afterImage?{...entry,beforeImage,afterImage}:null;
  }));
  const pairs=results.filter(Boolean);
- if(pairs.length){pairs.forEach(addCard);document.querySelector('.note:not(#gallery-status)')?.remove();}
+ if(pairs.length){pairs.forEach(addCard);for(let i=pairs.length;i<3;i++)addCard({title:titles[i]},i);const note=document.querySelector('.note:not(#gallery-status)');if(pairs.length>=3)note?.remove();else if(note)note.textContent='Additional scenes are illustrative placeholders for your next transformations.';}
  else titles.forEach((title,i)=>addCard({title},i));
  prepareReveal();
  const status=document.querySelector('#gallery-status');

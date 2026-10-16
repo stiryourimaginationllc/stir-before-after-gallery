@@ -1,7 +1,7 @@
 // Permanent photo pairs. Add more entries to expand beyond 12.
 // Paths are relative to index.html. Only complete, successfully loaded pairs are displayed.
 window.TRANSFORMATIONS = [
-  { title: "Transformation 1", before: "photos/01-before.jpg", after: "photos/01-after.jpg" },
+  { title: "Disco Fever", before: "photos/20260712_193913171_original.jpg", after: "photos/20260712_193913171_generated.jpg" },
   { title: "Transformation 2", before: "photos/02-before.jpg", after: "photos/02-after.jpg" },
   { title: "Transformation 3", before: "photos/03-before.jpg", after: "photos/03-after.jpg" },
   { title: "Transformation 4", before: "photos/04-before.jpg", after: "photos/04-after.jpg" },

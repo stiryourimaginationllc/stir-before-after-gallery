@@ -1,3 +1,4 @@
-Original photographs belong here. No original image files have been supplied yet.
-Use 01-before.jpg and 01-after.jpg through 12-before.jpg and 12-after.jpg.
-Keep the original files unchanged. Add more entries to gallery-data.js for additional pairs.
+Disco Fever original photographs are stored here as unchanged copies of the repository-root JPEG files.
+BEFORE: 20260712_193913171_original.jpg
+AFTER: 20260712_193913171_generated.jpg
+Additional image pairs are configured in ../gallery-data.js.
